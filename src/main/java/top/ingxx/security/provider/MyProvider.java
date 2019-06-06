@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Log
+@Component
 public class MyProvider implements AuthenticationProvider {
 
     @Override

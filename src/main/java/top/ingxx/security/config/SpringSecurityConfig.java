@@ -24,10 +24,13 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private Myservice myservice;
 
+    @Autowired
+    private MyProvider myProvider;
+
     //配置认证类
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(myProvider()).authenticationProvider(daoAuthenticationProvider());
+        auth.authenticationProvider(myProvider).authenticationProvider(daoAuthenticationProvider());
     }
 
     //配置基本参数
@@ -55,11 +58,6 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         return provider;
     }
 
-    //自定义认证器
-    @Bean
-    public MyProvider myProvider(){
-        return new MyProvider();
-    }
 
     //自定义拦截器
     private MyRequestFilter myRequestFilter(AuthenticationManager authenticationManager) {
